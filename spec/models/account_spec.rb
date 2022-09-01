@@ -63,17 +63,32 @@ RSpec.describe Account, type: :model do
     it 'should handle account balance errors' do
       acc = Account.create!(balance: 30.0)
       acc.withdraw(40)
-      expect(acc.balance).to eql(30.0)
       expect(acc.invalid?).to eql(true)
+      expect(acc.transactions.count).to eql(0)
     end
 
   end
 
   describe '#deposit' do
 
-    it 'should create a new transaction of kind deposit'
+    it 'should create a new transaction of kind deposit' do
+      acc = Account.create!(balance: 30.0)
+      acc.deposit(20)
+      expect(acc.transactions.count).to eql(1)
+    end
 
-    it 'should increase the current account balance'
+    it 'should increase the current account balance' do
+      acc = Account.create!(balance: 30.0)
+      acc.deposit(20)
+      expect(acc.balance).to eql(50.0)
+    end
+
+    it 'should handle account balance errors' do
+      acc = Account.create!(balance: 30.0)
+      acc.deposit(-40)
+      expect(acc.invalid?).to eql(true)
+      expect(acc.transactions.count).to eql(0)
+    end
   end
 
 end
