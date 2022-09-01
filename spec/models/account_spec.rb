@@ -52,6 +52,7 @@ RSpec.describe Account, type: :model do
       acc = Account.create!(balance: 30.0)
       acc.withdraw(20)
       expect(acc.transactions.count).to eql(1)
+      expect(acc.transactions.first.kind).to eql('withdraw')
     end
 
     it 'should decrease the current account balance' do
@@ -75,6 +76,7 @@ RSpec.describe Account, type: :model do
       acc = Account.create!(balance: 30.0)
       acc.deposit(20)
       expect(acc.transactions.count).to eql(1)
+      expect(acc.transactions.first.kind).to eql('deposit')
     end
 
     it 'should increase the current account balance' do
@@ -89,6 +91,27 @@ RSpec.describe Account, type: :model do
       expect(acc.invalid?).to eql(true)
       expect(acc.transactions.count).to eql(0)
     end
+  end
+
+  describe '#transfer_in' do
+
+    it 'should add money to balance' do
+      acc = Account.create!(balance: 30.0)
+      acc.transfer_in(20)
+      expect(acc.balance).to eql(50.0)
+    end
+
+    it 'should create a new transaction of kind transfer' do
+      acc = Account.create!(balance: 30.0)
+      acc.transfer_in(20)
+      expect(acc.transactions.count).to eql(1)
+      expect(acc.transactions.first.kind).to eql('transfer')
+    end
+
+  end
+
+  describe '#transfer_out' do
+
   end
 
 end
