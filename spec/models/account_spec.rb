@@ -46,4 +46,34 @@ RSpec.describe Account, type: :model do
 
   end
 
+  describe '#withdraw' do
+
+    it 'should create a new transaction of kind withdraw' do
+      acc = Account.create!(balance: 30.0)
+      acc.withdraw(20)
+      expect(acc.transactions.count).to eql(1)
+    end
+
+    it 'should decrease the current account balance' do
+      acc = Account.create!(balance: 30.0)
+      acc.withdraw(20)
+      expect(acc.balance).to eql(10.0)
+    end
+
+    it 'should handle account balance errors' do
+      acc = Account.create!(balance: 30.0)
+      acc.withdraw(40)
+      expect(acc.balance).to eql(30.0)
+      expect(acc.invalid?).to eql(true)
+    end
+
+  end
+
+  describe '#deposit' do
+
+    it 'should create a new transaction of kind deposit'
+
+    it 'should increase the current account balance'
+  end
+
 end
