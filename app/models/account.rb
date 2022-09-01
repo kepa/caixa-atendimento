@@ -21,9 +21,8 @@ class Account < ApplicationRecord
     self.transactions.create(value: value, kind: kind) if self.valid?
   end
 
-  def transfer_out(value, account_id)
+  def transfer_out(value, destination_account)
     self.withdraw(value, 'transfer')
-    destination_account = Account.find(account_id)
     destination_account.deposit(value, 'transfer') if self.valid?
   end
 
