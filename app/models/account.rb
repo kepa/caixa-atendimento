@@ -1,6 +1,8 @@
 class Account < ApplicationRecord
   validate :balance_cannot_be_negative
 
+  has_many :transactions
+
   def give_money(value)
     self.balance = balance + value if active
   end
