@@ -1,6 +1,6 @@
 class Account < ApplicationRecord
+  validate :balance_cannot_be_negative, on: :update
 
-  #attr_accessor :balance, :active
 
   before_create do
     self.balance = 0.0
@@ -8,13 +8,18 @@ class Account < ApplicationRecord
   end
 
   def give_money(value)
-    raise 'Somente valores positivos' if value < 0
-    self.balance += value
+    self.update(balance: balance + value)
   end
 
   def take_money(value)
-    raise 'Saldo não pode ser negativo' if balance - value < 0
-    self.balance = balance - value
+    self.update(balance: balance - value)
   end
+
+  def balance_cannot_be_negative
+    if balance.negative?
+      errors.add(:balance, " can't be negative")
+    end
+  end
+
 
 end

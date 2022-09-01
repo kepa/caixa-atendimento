@@ -10,10 +10,14 @@ RSpec.describe Account, type: :model do
       expect(acc.balance).to eql(20.0)
     end
 
-    it 'should raise execption with negative values' do
+    it 'should be invalid if balance gets negative' do
       acc = Account.create!
       acc.give_money(-20)
-      expect(acc.balance).to eql(0.0)
+      expect(acc.invalid?).to eql(true)
+    end
+
+    it 'should not take negative values' do
+
     end
 
   end
@@ -25,6 +29,13 @@ RSpec.describe Account, type: :model do
       acc.give_money(20)
       acc.take_money(10)
       expect(acc.balance).to eql(10.0)
+    end
+
+    it 'should be invalid if balance gets negative' do
+      acc = Account.create!
+      acc.give_money(20)
+      acc.take_money(30)
+      expect(acc.invalid?).to eql(true)
     end
 
   end
