@@ -10,4 +10,23 @@ class Transaction < ApplicationRecord
     self.fees = 0 if self.fees.nil?
   end
 
+  def banking_hours?
+    return false if self.created_at.saturday? or self.created_at.sunday?
+    self.created_at.hour.between?(9,18)
+  end
+
+  def over_1000?
+    self.value >= 1000
+  end
+
+  def calculate_fees
+    self.fees = 7
+    self.fees = 5 if self.banking_hours?
+    self.fees += 10 if self.over_1000?
+  end
+
+  def collect_fee
+
+  end
+
 end
