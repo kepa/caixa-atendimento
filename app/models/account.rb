@@ -2,11 +2,11 @@ class Account < ApplicationRecord
   validate :balance_cannot_be_negative
 
   def give_money(value)
-    self.balance = balance + value
+    self.balance = balance + value if active
   end
 
   def take_money(value)
-    self.balance = balance - value
+    self.balance = balance - value if active
   end
 
   def balance_cannot_be_negative
