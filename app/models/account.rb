@@ -8,11 +8,11 @@ class Account < ApplicationRecord
   end
 
   def give_money(value)
-    self.update(balance: balance + value)
+    self.balance = balance + value
   end
 
   def take_money(value)
-    self.update(balance: balance - value)
+    self.balance = balance - value
   end
 
   def balance_cannot_be_negative
