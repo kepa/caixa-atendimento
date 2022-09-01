@@ -3,7 +3,7 @@ class Transaction < ApplicationRecord
 
   validates :value, numericality: { greater_than: 0 }
   validates :fees, numericality: { greater_than_or_equal_to: 0 }
-  validates :kind, inclusion: {in: %w(withdraw deposit transfer),
+  validates :kind, inclusion: {in: %w(withdraw deposit transfer fee),
     message: "%{value} is not a valid kind of transaction" }
 
   before_validation do
@@ -25,8 +25,9 @@ class Transaction < ApplicationRecord
     self.fees += 10 if self.over_1000?
   end
 
-  def collect_fee
-
+  def collect_fees
+    self.calculate_fees
+    self.account.withdraw(self.fees, 'fee')
   end
 
 end

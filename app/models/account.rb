@@ -23,6 +23,7 @@ class Account < ApplicationRecord
 
   def transfer_out(value, destination_account)
     self.withdraw(value, 'transfer')
+    self.transactions[self.transactions.count-1].collect_fees
     destination_account.deposit(value, 'transfer') if self.valid?
   end
 

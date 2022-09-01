@@ -36,7 +36,7 @@ RSpec.describe Transaction, type: :model do
 
   context 'fee calculation' do
 
-    let(:account) {Account.create}
+    let(:account) {Account.create(balance: 50)}
     let(:transaction) {account.transactions.create(value: 30,kind: "transfer")}
     let(:transaction_over1000) {account.transactions.create(value: 1000,kind: "transfer")}
     let(:banking_hours) {Time.new(2022,9,01,10,00,59)}
@@ -94,6 +94,16 @@ RSpec.describe Transaction, type: :model do
         transaction_over1000.update(created_at: non_banking_hours)
         transaction_over1000.calculate_fees
         expect(transaction_over1000.fees).to eql(17.0)
+      end
+
+    end
+
+    describe '#collect_fees' do
+
+      it 'should withdraw money from original account' do
+        transaction.update(created_at: banking_hours)
+        transaction.collect_fees
+        expect(account.balance).to eql(45.0)
       end
 
     end

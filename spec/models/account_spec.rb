@@ -110,14 +110,14 @@ RSpec.describe Account, type: :model do
       acc1 = Account.create!(balance: 30.0)
       acc2 = Account.create!
       acc1.transfer_out(20, acc2)
-      expect(acc1.balance).to eql(10.0)
+      expect(acc1.balance).to eql(5.0)
     end
 
     it 'should create a transaction on self with kind transfer' do
       acc1 = Account.create!(balance: 30.0)
       acc2 = Account.create!
       acc1.transfer_out(20, acc2)
-      expect(acc1.transactions.count).to eql(1)
+      expect(acc1.transactions.count).to eql(2)
       expect(acc1.transactions.first.kind).to eql('transfer')
     end
 
