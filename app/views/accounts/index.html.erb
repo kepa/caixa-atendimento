@@ -1,0 +1,10 @@
+<h1>Accounts#index</h1>
+<% @accounts.each do |account| %>
+	
+	<%= link_to(account) do%>
+		<p>Account # <%= account.id %></p>
+	<% end %>
+
+<% end %>
+
+<%= button_to "Abrir uma conta",accounts_path, method: :post %>
