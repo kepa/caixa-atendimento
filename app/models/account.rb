@@ -1,11 +1,5 @@
 class Account < ApplicationRecord
-  validate :balance_cannot_be_negative, on: :update
-
-
-  before_create do
-    self.balance = 0.0
-    self.active = true
-  end
+  validate :balance_cannot_be_negative
 
   def give_money(value)
     self.balance = balance + value
