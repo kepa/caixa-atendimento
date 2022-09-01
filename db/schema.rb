@@ -23,7 +23,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_01_035348) do
 
   create_table "transactions", force: :cascade do |t|
     t.bigint "account_id", null: false
-    t.string "type"
+    t.string "kind"
     t.float "value"
     t.float "fees"
     t.datetime "created_at", null: false
