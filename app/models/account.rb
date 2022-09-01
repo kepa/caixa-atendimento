@@ -11,14 +11,18 @@ class Account < ApplicationRecord
     self.balance = balance - value if active
   end
 
-  def withdraw(value)
+  def withdraw(value, kind='withdraw')
     take_money(value)
-    self.transactions.create(value: value, kind: 'withdraw') if self.valid?
+    self.transactions.create(value: value, kind: kind) if self.valid?
   end
 
-  def deposit(value)
+  def deposit(value, kind='deposit')
     give_money(value)
-    self.transactions.create(value: value, kind: 'deposit') if self.valid?
+    self.transactions.create(value: value, kind: kind) if self.valid?
+  end
+
+  def transfer_out(value, account_id)
+
   end
 
   def balance_cannot_be_negative
