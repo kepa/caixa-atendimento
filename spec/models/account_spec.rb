@@ -121,9 +121,21 @@ RSpec.describe Account, type: :model do
       expect(acc1.transactions.first.kind).to eql('transfer')
     end
 
-    it 'should give money to destination account'
+    it 'should give money to destination account' do
+      acc1 = Account.create!(balance: 30.0)
+      acc2 = Account.create!
+      acc1.transfer_out(20, acc2.id)
+      acc2.save
+      expect(acc2.balance).to eql(20.0)
+    end
 
-    it 'should create a transaction on destination with kind transfer'
+    it 'should create a transaction on destination with kind transfer' do
+      acc1 = Account.create!(balance: 30.0)
+      acc2 = Account.create!
+      acc1.transfer_out(20, acc2.id)
+      expect(acc2.transactions.count).to eql(1)
+      expect(acc2.transactions.first.kind).to eql('transfer')
+    end
 
   end
 
