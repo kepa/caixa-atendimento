@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+  get 'sessions/create'
+  get 'sessions/login'
+  get 'sessions/welcome'
+  get 'users/new'
+  get 'users/create'
   get 'static/home'
   get 'static/deposit'
   get 'static/withdraw'

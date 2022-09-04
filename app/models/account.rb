@@ -4,9 +4,9 @@ class Account < ApplicationRecord
   has_many :transactions
 
   def update(params)
-    deposit(params[:deposit_value].to_f) unless value_cannot_be_empty(params[:deposit_value])
-    withdraw(params[:withdraw_value].to_f) unless value_cannot_be_empty(params[:withdraw_value])
-    transfer_out(params[:transfer_value].to_f, Account.find(params[:dest_account].to_f)) unless value_cannot_be_empty(params[:transfer_value]) and dest_account_cannot_be_empty(params[:dest_account])
+    deposit(params[:deposit_value].to_f) unless params[:deposit_value].nil?
+    withdraw(params[:withdraw_value].to_f) unless params[:withdraw_value].nil?
+    transfer_out(params[:transfer_value].to_f, Account.find(params[:dest_account].to_f)) unless params[:transfer_value].nil? and params[:dest_account].nil?
   end
 
   def give_money(value)

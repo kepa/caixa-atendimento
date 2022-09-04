@@ -1,2 +1,20 @@
 <h1>Static#deposit</h1>
-<p>Find me in app/views/static/deposit.html.erb</p>
+<%= form_with(model: @account) do |form| %>
+
+<% if @account.errors.any? %>
+
+	<% @account.errors.each do |error|%>
+		<p><%= error.full_message %></p>
+	<% end %>
+
+<% end %>
+
+    <div>
+    	<%= form.label :deposit_value %>
+      	<%= form.text_field :deposit_value %>
+    </div>
+    <div>
+      <%= form.submit %>
+   </div>
+<% end %>
+

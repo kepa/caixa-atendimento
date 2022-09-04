@@ -1,2 +1,23 @@
 <h1>Static#transfer</h1>
-<p>Find me in app/views/static/transfer.html.erb</p>
+<%= form_with(model: @account) do |form| %>
+
+<% if @account.errors.any? %>
+
+	<% @account.errors.each do |error|%>
+		<p><%= error.full_message %></p>
+	<% end %>
+
+<% end %>
+
+    <div>
+    	<%= form.label :transfer_value %>
+      	<%= form.text_field :transfer_value %>
+    </div>
+    <div>
+    	<%= form.label :dest_account %>
+      	<%= form.text_field :dest_account %>
+    </div>
+    <div>
+      <%= form.submit %>
+   </div>
+<% end %>

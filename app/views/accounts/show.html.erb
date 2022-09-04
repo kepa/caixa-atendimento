@@ -29,4 +29,6 @@
 
 </table>	
 
-<%= link_to "Sacar", edit_account_path(@account) %>
+<%= link_to "Depositar", static_deposit_path(:account => @account) %> | 
+<%= link_to "Sacar", static_withdraw_path(:account => @account) %> |
+<%= link_to "Transferir", static_transfer_path(:account => @account) %> 

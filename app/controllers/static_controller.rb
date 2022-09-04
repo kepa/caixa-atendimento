@@ -1,4 +1,7 @@
 class StaticController < ApplicationController
+  before_action :set_account, only: %i[ deposit withdraw transfer ]
+
+
   def home
   end
 
@@ -10,4 +13,11 @@ class StaticController < ApplicationController
 
   def transfer
   end
+
+  private
+
+  def set_account
+    @account = Account.find(params[:account])
+  end
+
 end
