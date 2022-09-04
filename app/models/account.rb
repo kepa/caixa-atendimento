@@ -3,6 +3,12 @@ class Account < ApplicationRecord
 
   has_many :transactions
 
+  def update(params)
+    #binding.pry
+    deposit(params[:deposit_value].to_f) unless params[:deposit_value].empty?
+    withdraw(params[:withdraw_value].to_f) unless params[:withdraw_value].empty?
+    transfer_out(params[:transfer_value].to_f, Account.find(params[:dest_account].to_f)) unless params[:transfer_value].empty?
+  end
 
   def give_money(value)
     self.balance = balance + value if active
@@ -26,6 +32,7 @@ class Account < ApplicationRecord
     self.withdraw(value, 'transfer')
     self.transactions[self.transactions.count-1].collect_fees
     destination_account.deposit(value, 'transfer') if self.valid?
+    destination_account.save
   end
 
   def balance_cannot_be_negative

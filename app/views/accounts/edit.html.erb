@@ -1,9 +1,29 @@
 <h1>Accounts#edit</h1>
 <%= form_with(model: @account) do |form| %>
- 
+
+<% if @account.errors.any? %>
+
+	<% @account.errors.each do |error|%>
+		<p><%= error %></p>
+	<% end %>
+
+<% end %>
+
     <div>
-    	<%= form.label :deposit %>
-      	<%= form.text_field :deposit %>
+    	<%= form.label :deposit_value %>
+      	<%= form.text_field :deposit_value %>
+    </div>
+    <div>
+    	<%= form.label :withdraw_value %>
+      	<%= form.text_field :withdraw_value %>
+    </div>
+    <div>
+    	<%= form.label :transfer_value %>
+      	<%= form.text_field :transfer_value %>
+    </div>
+    <div>
+    	<%= form.label :dest_account %>
+      	<%= form.text_field :dest_account %>
     </div>
     <div>
       <%= form.submit %>

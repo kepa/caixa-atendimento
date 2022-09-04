@@ -22,7 +22,8 @@ class AccountsController < ApplicationController
   def update
 
     msg = "Saque realizado com sucesso"
-    @account.deposit(account_params[:deposit], 'deposit')
+    #@account.deposit(account_params[:deposit_value].to_f)
+    @account.update(account_params)
 
     if @account.save
       redirect_to account_url(@account), notice: msg
@@ -39,7 +40,7 @@ class AccountsController < ApplicationController
   end
 
   def account_params
-    params.require(:account).permit(:withdraw,:deposit,:transfer)
+    params.require(:account).permit(:withdraw_value,:deposit_value,:transfer_value,:dest_account)
   end
 
 end
