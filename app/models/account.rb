@@ -4,10 +4,9 @@ class Account < ApplicationRecord
   has_many :transactions
 
   def update(params)
-    #binding.pry
-    deposit(params[:deposit_value].to_f) unless params[:deposit_value].empty?
-    withdraw(params[:withdraw_value].to_f) unless params[:withdraw_value].empty?
-    transfer_out(params[:transfer_value].to_f, Account.find(params[:dest_account].to_f)) unless params[:transfer_value].empty?
+    deposit(params[:deposit_value].to_f) unless value_cannot_be_empty(params[:deposit_value])
+    withdraw(params[:withdraw_value].to_f) unless value_cannot_be_empty(params[:withdraw_value])
+    transfer_out(params[:transfer_value].to_f, Account.find(params[:dest_account].to_f)) unless value_cannot_be_empty(params[:transfer_value]) and dest_account_cannot_be_empty(params[:dest_account])
   end
 
   def give_money(value)
@@ -36,10 +35,16 @@ class Account < ApplicationRecord
   end
 
   def balance_cannot_be_negative
-    if balance.negative?
-      errors.add(:balance, " can't be negative")
-    end
+     errors.add(:balance, " can't be negative") if balance.negative?
   end
 
+  def value_cannot_be_empty(value)
+    errors.add(:value, " can't be empty") if value.empty?
+    value.empty?
+  end
 
+  def dest_account_cannot_be_empty(value)
+    errors.add(:destination_account, " can't be empty") if value.empty?
+    value.empty?
+  end
 end

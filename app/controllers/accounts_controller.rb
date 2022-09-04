@@ -21,12 +21,12 @@ class AccountsController < ApplicationController
 
   def update
 
-    msg = "Saque realizado com sucesso"
-    #@account.deposit(account_params[:deposit_value].to_f)
     @account.update(account_params)
 
     if @account.save
-      redirect_to account_url(@account), notice: msg
+      redirect_to account_url(@account)
+    else
+      render :show, status: :unprocessable_entity
     end
   end
 
