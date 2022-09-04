@@ -1,2 +1,12 @@
-<h1>Accounts#show</h1>
-<p>Find me in app/views/accounts/show.html.erb</p>
+<h1>Account #<%= @account.id %></h1>
+<p>Saldo atual: R$ <%= @account.balance %></p>
+<p>Ativa? <%= @account.active %></p>
+
+<% @account.transactions.each do |transaction|%>
+	<p><%= transaction.created_at %></p>
+	<p><%= transaction.value %></p>
+	<p><%= transaction.kind %></p>
+	<p><%= transaction.fees %></p>
+<% end %>
+
+<%= link_to "Sacar", edit_account_path(@account) %>

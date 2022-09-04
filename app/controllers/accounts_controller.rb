@@ -19,6 +19,16 @@ class AccountsController < ApplicationController
   def edit
   end
 
+  def update
+
+    msg = "Saque realizado com sucesso"
+    @account.deposit(account_params[:deposit], 'deposit')
+
+    if @account.save
+      redirect_to account_url(@account), notice: msg
+    end
+  end
+
   def destroy
   end
 
