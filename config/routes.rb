@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   get 'welcome', to: 'sessions#welcome'
+  post 'logout', to: 'sessions#destroy'
 
   get 'static/home'
   get 'static/deposit'

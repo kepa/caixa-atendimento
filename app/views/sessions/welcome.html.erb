@@ -6,3 +6,7 @@
 
 <%= button_to "Login", '/login', method: :get%>
 <%= button_to "Sign Up", '/users/new', method: :get%>
+
+<% if current_user.accounts.empty? %>
+    <%= button_to "Abrir uma conta",accounts_path, method: :post %>
+<% end %>

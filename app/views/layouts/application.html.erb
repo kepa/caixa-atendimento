@@ -12,5 +12,9 @@
 
   <body>
     <%= yield %>
+
+    <% if logged_in?%>
+      <%= button_to "Sair",logout_path, method: :post %>
+    <% end %>
   </body>
 </html>

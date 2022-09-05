@@ -9,7 +9,7 @@ class AccountsController < ApplicationController
   end
 
   def create
-    @account = Account.new
+    @account = current_user.accounts.new
 
     if @account.save
       redirect_to account_url(@account)
@@ -36,7 +36,7 @@ class AccountsController < ApplicationController
   private
 
   def set_account
-    @account = Account.find(params[:id])
+    @account = current_user.accounts.first
   end
 
   def account_params
