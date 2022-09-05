@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CaixaAtendimento</title>
+    <title>Caixa de auto-atendimento</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,11 +11,26 @@
   </head>
 
   <body>
-    <p><%= notice %></p>
-    <%= yield %>
+    <div class="main-cont">
+      
+      <div class="header">
+        <h1>Caixa de Atendimento</h1>
+        <% if logged_in?%>
+          <%= button_to "Sair",logout_path, method: :post %>
+        <% end %>
+      </div>
 
-    <% if logged_in?%>
-      <%= button_to "Sair",logout_path, method: :post %>
-    <% end %>
+      <p><%= notice %></p>
+    
+    <div class="main-console">
+      <div class="left-pane">
+        <%= yield %>
+      </div>
+      <div class="right-pane">
+        <%= yield :right_pane%>
+      </div>
+    </div>
+
+    </div>
   </body>
 </html>

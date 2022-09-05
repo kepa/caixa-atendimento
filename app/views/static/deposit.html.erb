@@ -10,11 +10,11 @@
 <% end %>
 
     <div>
-    	<%= form.label :deposit_value %>
+    	<%= form.label :deposit_value %> </br>
       	<%= form.text_field :deposit_value %>
     </div>
-    <div>
+    <% content_for :right_pane do %>
       <%= form.submit %>
-   </div>
+   <%end%>
 <% end %>
 

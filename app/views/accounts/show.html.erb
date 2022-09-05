@@ -1,16 +1,8 @@
-<h1>Account #<%= @account.id %></h1>
+<h1>Conta #<%= @account.id %></h1>
 <p>Saldo atual: R$ <%= @account.balance %></p>
 <p>Ativa? <%= @account.active %></p>
 
-<% if @account.errors.any? %>
 
-	<% @account.errors.each do |error|%>
-		<p><%= error.full_message %></p>
-	<% end %>
-
-<% end %>
-
-	
 <table>
 
 	<tr>
@@ -29,6 +21,8 @@
 
 </table>	
 
-<%= link_to "Depositar", static_deposit_path(:account => @account) %> | 
-<%= link_to "Sacar", static_withdraw_path(:account => @account) %> |
-<%= link_to "Transferir", static_transfer_path(:account => @account) %> 
+<% content_for :right_pane do %>
+	<%= link_to "Depositar", static_deposit_path(:account => @account) %> | 
+	<%= link_to "Sacar", static_withdraw_path(:account => @account) %> |
+	<%= link_to "Transferir", static_transfer_path(:account => @account) %> 
+<% end %>

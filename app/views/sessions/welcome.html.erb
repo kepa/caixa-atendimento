@@ -9,6 +9,4 @@
 
 <% end %>
 
-<% if current_user.accounts.empty? %>
-    <%= button_to "Abrir uma conta",accounts_path, method: :post %>
-<% end %>
+<%= button_to "Abrir uma conta",accounts_path, method: :post %>
