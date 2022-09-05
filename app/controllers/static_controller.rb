@@ -1,6 +1,6 @@
 class StaticController < ApplicationController
   before_action :set_account, only: %i[ deposit withdraw transfer ]
-
+  skip_before_action :authorized, only: :home
 
   def home
   end

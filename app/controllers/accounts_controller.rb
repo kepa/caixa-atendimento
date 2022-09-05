@@ -36,7 +36,12 @@ class AccountsController < ApplicationController
   private
 
   def set_account
-    @account = current_user.accounts.first
+    @account = current_user.accounts.find(params[:id])
+
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Acesso negado"
+      redirect_to root_path
+
   end
 
   def account_params

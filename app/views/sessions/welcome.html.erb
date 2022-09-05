@@ -1,11 +1,13 @@
-<h1>Welcome</h1>
+<h1>Bem-vindo de volta <%= current_user.username %>!</h1>
 
-<% if logged_in? %>
-    <h1>You are Logged In, <%= current_user.username %></h1>
-<%end%>
+<h2>Suas contas:</h2>
+<% @accounts.each do |account| %>
+    
+    <%= link_to(account) do%>
+        <p>Conta # <%= account.id %></p>
+    <% end %>
 
-<%= button_to "Login", '/login', method: :get%>
-<%= button_to "Sign Up", '/users/new', method: :get%>
+<% end %>
 
 <% if current_user.accounts.empty? %>
     <%= button_to "Abrir uma conta",accounts_path, method: :post %>

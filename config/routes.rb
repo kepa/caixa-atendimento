@@ -13,5 +13,5 @@ Rails.application.routes.draw do
 
   resources :accounts
 
-  root "accounts#index"
+  root "static#home"
 end

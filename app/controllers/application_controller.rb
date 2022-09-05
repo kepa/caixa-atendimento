@@ -13,7 +13,8 @@ def logged_in?
 end
 
 def authorized
-   redirect_to '/welcome' unless logged_in?
+   flash[:notice] = "Você precisa estar logado!"
+   redirect_to root_path unless logged_in?
 end
 
 end
