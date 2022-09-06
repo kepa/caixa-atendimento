@@ -5,3 +5,13 @@
 	gap: 10px;
 }
 
+.errors {
+	padding: 5%;
+	background-color: #df8484;
+	border: 3px solid #e63030;
+}
+
+.errors h2 {
+	font-size: 16pt;
+	font-weight: 900;
+}

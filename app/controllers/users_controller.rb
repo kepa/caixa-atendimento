@@ -6,9 +6,15 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
-    session[:user_id] = @user.id
-    redirect_to '/welcome'
+    @user = User.new(user_params)
+
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to '/welcome'
+    else
+      render :new, status: :unprocessable_entity
+    end
+
   end
 end
 

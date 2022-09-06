@@ -1,4 +1,16 @@
 <h1>Cadastre-se:</h1>
+
+
+  <% if @user.errors.any? %>
+  <div class="errors">
+      <h2>Os seguintes erros foram encontrados:</h2>
+      <% @user.errors.each do |error|%>
+        <p><%= error.full_message %></p>
+      <% end %>
+  </div>
+  <% end %>
+
+
 <%= form_for(@user) do |form|%>
   <%= form.label :username, "Seu nome:"%>
   <%= form.text_field :username%>
