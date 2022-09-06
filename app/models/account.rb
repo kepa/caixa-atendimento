@@ -34,6 +34,11 @@ class Account < ApplicationRecord
     destination_account.save
   end
 
+  def historic_statement(initial_date, end_date)
+    self.transactions.where(created_at: initial_date..(end_date+ 1.day))
+    #self.transactions
+  end
+
   def balance_cannot_be_negative
      errors.add(:balance, " can't be negative") if balance.negative?
   end
