@@ -31,6 +31,14 @@ class AccountsController < ApplicationController
   end
 
   def destroy
+    @account.active = false
+
+    if @account.save
+      redirect_to welcome_path
+    else
+      render :show, status: :unprocessable_entity
+    end
+
   end
 
   private

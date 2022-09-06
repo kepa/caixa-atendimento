@@ -79,8 +79,9 @@ body {
 	box-shadow: 3px 5px #092d4f;
 }
 
-.right-pane a:hover {
+.right-pane a:hover, .right-pane button:hover {
 	background-color: #092d4f;
+	cursor: pointer;
 }
 
 .right-pane form {
@@ -91,7 +92,7 @@ body {
 }
 
 .right-pane button {
-	width: 75%;
+	width: 85%;
 	padding: 5%;
 	font-size: 16pt;
 	font-family: 'Bebas Neue', cursive;
