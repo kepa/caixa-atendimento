@@ -1,0 +1,51 @@
+.account-info {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.account-status {
+	display: flex;
+}
+
+.account-status h1{
+	flex: 2;
+}
+
+.account-status p {
+	font-size: 16pt;
+	font-weight: 900pt;
+	font-family: 'Bebas Neue', cursive;
+	color: #67be49;
+}
+
+.saldo {
+	text-align: center;
+	font-size: 16pt;
+	padding: 10px 0;
+	border-radius: 10px;
+	background-color: #67be49;
+}
+
+.statement {
+	/*border: 1px solid;*/
+}
+
+.statement div:nth-child(2n+0) {
+	background-color: #89b9e5;
+}
+
+.statement-header {
+	display: flex;
+	align-items: center;
+	/*gap: 45px;*/
+}
+
+.statement-header p, .statement-line p{
+	flex: 1;
+	text-align: center;
+}
+
+.statement-line {
+	display: flex;
+}

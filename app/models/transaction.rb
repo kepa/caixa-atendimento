@@ -31,7 +31,7 @@ class Transaction < ApplicationRecord
   end
 
   def transaction_date
-    return "#{self.created_at.day}/#{self.created_at.month}/#{self.created_at.year} | #{self.created_at.hour}: #{self.created_at.min}"
+    return "#{self.created_at.day}/#{self.created_at.month}/#{self.created_at.year}"
   end
 
 end

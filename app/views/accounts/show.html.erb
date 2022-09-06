@@ -1,25 +1,33 @@
-<h1>Conta #<%= @account.id %></h1>
-<p>Saldo atual: R$ <%= @account.balance %></p>
-<p>Ativa? <%= @account.active %></p>
+<div class="account-info">
+	<div class="account-status">
+		<h1>Conta #<%= @account.id %></h1>
+		<p><%= @account.active ? "ATIVA" : "INATIVA"%></p>
+	</div>
+	
+	<p class="saldo">
+		Saldo atual: </br>
+		R$ <%= @account.balance %>
+	</p>
+	
+	<h1>Extrato</h1>
 
+	<div class="statement">
 
-<table>
+		<div class="statement-header">
+			<p>Data</p>
+			<p>Tipo</p>
+			<p>Valor</p>
+		</div>
+		<% @account.transactions.each do |transaction|%>
+			<div class="statement-line">
+				<p><%= transaction.transaction_date %></p>
+				<p><%= transaction.kind %></p>
+				<p><%= transaction.value %></p>
+			</div>
+		<% end %>
 
-	<tr>
-		<th>Data</th>
-		<th>Valor</th>
-		<th>Tipo</th>
-	</tr>
-<% @account.transactions.each do |transaction|%>
-	<tr>
-		<th><%= transaction.transaction_date %></th>
-		<th><%= transaction.value %></th>
-		<th><%= transaction.kind %></th>
-		
-	</tr>
-<% end %>
-
-</table>	
+	</div>	
+</div>
 
 <% content_for :right_pane do %>
 	<% if @account.active %>
