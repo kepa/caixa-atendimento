@@ -12,7 +12,7 @@
 	</tr>
 <% @account.transactions.each do |transaction|%>
 	<tr>
-		<th><%= transaction.created_at.to_fs(:long) %></th>
+		<th><%= transaction.transaction_date %></th>
 		<th><%= transaction.value %></th>
 		<th><%= transaction.kind %></th>
 		

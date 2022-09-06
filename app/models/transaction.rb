@@ -30,4 +30,8 @@ class Transaction < ApplicationRecord
     self.account.withdraw(self.fees, 'fee')
   end
 
+  def transaction_date
+    return "#{self.created_at.day}/#{self.created_at.month}/#{self.created_at.year} | #{self.created_at.hour}: #{self.created_at.min}"
+  end
+
 end

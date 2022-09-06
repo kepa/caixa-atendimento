@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
 body {
 	display: flex;
 	height: 100%;
@@ -24,10 +26,13 @@ body {
 }
 
 .header h1 {
-	font-size: 30pt;
+	font-size: 42pt;
 	font-weight: 900;
 	flex: 2;
 	text-align: center;
+	font-family: 'Bebas Neue', cursive;
+	text-shadow: 2px 8px #092d4f;
+	color: #1a86e9;
 }
 
 .main-console {
