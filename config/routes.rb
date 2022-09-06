@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :users
+  resources :users, only: [:new, :create]
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get 'static/withdraw'
   get 'static/transfer'
 
-  resources :accounts
+  resources :accounts, only: [:show, :create, :update, :destroy]
 
   root "static#home"
 end

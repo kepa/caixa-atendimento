@@ -1,10 +1,6 @@
 class AccountsController < ApplicationController
   before_action :set_account, only: %i[ show edit update destroy ]
 
-  def index
-    @accounts = Account.all
-  end
-
   def show
   end
 
@@ -14,9 +10,6 @@ class AccountsController < ApplicationController
     if @account.save
       redirect_to account_url(@account)
     end
-  end
-
-  def edit
   end
 
   def update
