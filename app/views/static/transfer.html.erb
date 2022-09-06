@@ -9,17 +9,15 @@
 
 <% end %>
 
-    <div>
-    	<%= form.label :transfer_value, "Insira o valor da transferência:" %> </br>
-      	<%= form.text_field :transfer_value %>
-    </div>
-    <div>
-    	<%= form.label :dest_account, "Insira conta de destino:" %> </br>
-      	<%= form.number_field :dest_account %>
-    </div>
-    <div>
+
+    	<%= form.label :transfer_value, "Insira o valor da transferência:" %>
+      <%= form.text_field :transfer_value %>
+
+    	<%= form.label :dest_account, "Insira conta de destino:" %> 
+      <%= form.number_field :dest_account %>
+
       <%= form.submit "Transferir" %>
-   </div>
+
 <% end %>
 
 <% content_for :right_pane do %>

@@ -1,21 +1,20 @@
 <h1>Saques</h1>
 <%= form_with(model: @account) do |form| %>
 
-<% if @account.errors.any? %>
+  <% if @account.errors.any? %>
 
-	<% @account.errors.each do |error|%>
-		<p><%= error.full_message %></p>
-	<% end %>
+  	<% @account.errors.each do |error|%>
+  		<p><%= error.full_message %></p>
+  	<% end %>
 
-<% end %>
-
-    <div>
-    	<%= form.label :withdraw_value, "Insira o valor a ser sacado:" %> </br>
-      	<%= form.text_field :withdraw_value %>
-    </div>
-    <div>
-      <%= form.submit "Sacar" %>
-   </div>
+  <% end %>
+  
+    	<%= form.label :withdraw_value, "Insira o valor a ser sacado:" %> 
+      <%= form.text_field :withdraw_value %>
+      
+      <div>
+        <%= form.submit "Sacar" %>
+      </div>
 <% end %>
 
 <% content_for :right_pane do %>

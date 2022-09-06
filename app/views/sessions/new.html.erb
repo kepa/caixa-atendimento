@@ -2,10 +2,14 @@
 
    <%= form_tag '/login' do %>
 
-	   <%= label_tag :username%>
-	   <%= text_field_tag :username %>
-	   <%= label_tag :password%>
+	   <%= label_tag :username, "Seu nome:"%>
+	   <%= text_field_tag :username %> 
+	   <%= label_tag :password, "Sua senha:"%>
 	   <%= password_field_tag :password%>
 	   <%= submit_tag "Login"%>
 
 	<%end%>
+
+<% content_for :right_pane do %>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nulla lectus, vestibulum in faucibus at, eleifend et turpis. Praesent maximus urna id quam auctor, id consequat risus hendrerit. Nullam in condimentum nisi, at ornare dui. Nulla non convallis metus. Nam molestie euismod vulputate. Etiam molestie sed eros vel euismod. Pellentesque fermentum lorem at diam placerat, quis consectetur diam vestibulum. Pellentesque nisi ex, commodo at metus in, malesuada vulputate orci. Mauris porttitor eros sed lacus vehicula, et semper turpis tincidunt.</p>
+<% end %>
