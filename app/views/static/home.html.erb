@@ -1,6 +1,6 @@
-<h1>Static#home</h1>
+<h1>Sistema de Autoatendimento</h1>
 
 <%unless logged_in? %>
 	<%= button_to "Login", '/login', method: :get%>
-	<%= button_to "Abrir uma conta", '/users/new', method: :get%>
+	<%= button_to "Cadastrar-se", '/users/new', method: :get%>
 <% end %>	

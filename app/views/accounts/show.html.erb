@@ -12,7 +12,7 @@
 	</tr>
 <% @account.transactions.each do |transaction|%>
 	<tr>
-		<th><%= transaction.created_at %></th>
+		<th><%= transaction.created_at.to_fs(:long) %></th>
 		<th><%= transaction.value %></th>
 		<th><%= transaction.kind %></th>
 		
@@ -22,7 +22,9 @@
 </table>	
 
 <% content_for :right_pane do %>
-	<%= link_to "Depositar", static_deposit_path(:account => @account) %> | 
-	<%= link_to "Sacar", static_withdraw_path(:account => @account) %> |
-	<%= link_to "Transferir", static_transfer_path(:account => @account) %> 
+	<% if @account.active %>
+		<%= link_to "Depositar", static_deposit_path(:account => @account) %> | 
+		<%= link_to "Sacar", static_withdraw_path(:account => @account) %> |
+		<%= link_to "Transferir", static_transfer_path(:account => @account) %>
+	<% end %>	
 <% end %>

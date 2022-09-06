@@ -1,4 +1,4 @@
-<h1>Static#transfer</h1>
+<h1>Transferência</h1>
 <%= form_with(model: @account) do |form| %>
 
 <% if @account.errors.any? %>
@@ -10,14 +10,14 @@
 <% end %>
 
     <div>
-    	<%= form.label :transfer_value %>
+    	<%= form.label :transfer_value, "Insira o valor da transferência:" %> </br>
       	<%= form.text_field :transfer_value %>
     </div>
     <div>
-    	<%= form.label :dest_account %>
-      	<%= form.text_field :dest_account %>
+    	<%= form.label :dest_account, "Insira conta de destino:" %> </br>
+      	<%= form.number_field :dest_account %>
     </div>
     <div>
-      <%= form.submit %>
+      <%= form.submit "Transferir" %>
    </div>
 <% end %>

@@ -1,5 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context 'basic validation' do
+
+    describe 'username' do
+      it 'should always be present' do
+        user = User.new
+        expect(user.valid?).to eql(false)
+      end
+    end
+
+  end
+
+  context 'User creation' do
+
+  end
+
 end

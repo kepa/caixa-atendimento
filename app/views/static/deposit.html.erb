@@ -1,4 +1,4 @@
-<h1>Static#deposit</h1>
+<h1>Depositos</h1>
 <%= form_with(model: @account) do |form| %>
 
 <% if @account.errors.any? %>
@@ -10,11 +10,10 @@
 <% end %>
 
     <div>
-    	<%= form.label :deposit_value %> </br>
+    	<%= form.label :deposit_value, "Insira o valor a ser depositado:" %> </br>
       	<%= form.text_field :deposit_value %>
     </div>
-    <% content_for :right_pane do %>
       <%= form.submit %>
-   <%end%>
+   
 <% end %>
 

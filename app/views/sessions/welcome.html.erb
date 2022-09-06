@@ -1,4 +1,4 @@
-<h1>Bem-vindo de volta <%= current_user.username %>!</h1>
+<h1>Bem-vindo <%= current_user.username %>!</h1>
 
 <h2>Suas contas:</h2>
 <% @accounts.each do |account| %>
@@ -9,4 +9,6 @@
 
 <% end %>
 
-<%= button_to "Abrir uma conta",accounts_path, method: :post %>
+<% content_for :right_pane do %>
+    <%= button_to "Abrir uma nova conta",accounts_path, method: :post %>
+<% end %>

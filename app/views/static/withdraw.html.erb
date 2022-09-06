@@ -1,4 +1,4 @@
-<h1>Static#withdraw</h1>
+<h1>Saques</h1>
 <%= form_with(model: @account) do |form| %>
 
 <% if @account.errors.any? %>
@@ -10,7 +10,7 @@
 <% end %>
 
     <div>
-    	<%= form.label :withdraw_value %>
+    	<%= form.label :withdraw_value, "Insira o valor a ser sacado:" %> </br>
       	<%= form.text_field :withdraw_value %>
     </div>
     <div>

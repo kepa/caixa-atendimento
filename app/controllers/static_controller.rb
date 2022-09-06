@@ -1,5 +1,6 @@
 class StaticController < ApplicationController
   before_action :set_account, only: %i[ deposit withdraw transfer ]
+  before_action :redirect_to_welcome, only: :home
   skip_before_action :authorized, only: :home
 
   def home
@@ -18,6 +19,10 @@ class StaticController < ApplicationController
 
   def set_account
     @account = Account.find(params[:account])
+  end
+
+  def redirect_to_welcome
+    redirect_to '/welcome' if logged_in?
   end
 
 end
