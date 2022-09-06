@@ -5,15 +5,21 @@ RSpec.describe User, type: :model do
 
     describe 'username' do
       it 'should always be present' do
-        user = User.new
+        user = User.new(password: 'pass')
         expect(user.valid?).to eql(false)
+        expect(user.errors.count).to eql(1)
+      end
+    end
+
+    describe 'password' do
+      it 'should always be present' do
+        user = User.new(username: 'test')
+        expect(user.valid?).to eql(false)
+        expect(user.errors.count).to eql(1)
       end
     end
 
   end
 
-  context 'User creation' do
-
-  end
 
 end
