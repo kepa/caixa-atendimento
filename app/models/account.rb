@@ -35,8 +35,7 @@ class Account < ApplicationRecord
   end
 
   def historic_statement(initial_date, end_date)
-    self.transactions.where(created_at: initial_date..(end_date+ 1.day))
-    #self.transactions
+    self.transactions.where(created_at: Date.parse(initial_date)..(Date.parse(end_date) + 1.day))
   end
 
   def balance_cannot_be_negative
