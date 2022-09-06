@@ -6,7 +6,7 @@ RSpec.describe User, type: :model do
     describe 'username' do
       it 'should always be present' do
         user = User.new(password: 'pass')
-        expect(user.valid?).to eql(false)
+        user.should_not be_valid
         expect(user.errors.count).to eql(1)
       end
     end
@@ -14,7 +14,7 @@ RSpec.describe User, type: :model do
     describe 'password' do
       it 'should always be present' do
         user = User.new(username: 'test')
-        expect(user.valid?).to eql(false)
+        user.should_not be_valid
         expect(user.errors.count).to eql(1)
       end
     end
