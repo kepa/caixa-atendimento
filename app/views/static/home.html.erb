@@ -1,6 +1,10 @@
 <h1>Sistema de Autoatendimento</h1>
 
-<%unless logged_in? %>
-	<%= button_to "Login", '/login', method: :get%>
-	<%= button_to "Cadastrar-se", '/users/new', method: :get%>
-<% end %>	
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nulla lectus, vestibulum in faucibus at, eleifend et turpis. Praesent maximus urna id quam auctor, id consequat risus hendrerit. Nullam in condimentum nisi, at ornare dui. Nulla non convallis metus. Nam molestie euismod vulputate. Etiam molestie sed eros vel euismod. Pellentesque fermentum lorem at diam placerat, quis consectetur diam vestibulum. Pellentesque nisi ex, commodo at metus in, malesuada vulputate orci. Mauris porttitor eros sed lacus vehicula, et semper turpis tincidunt.</p>
+
+<% content_for :right_pane do %>
+	<%unless logged_in? %>
+		<%= button_to "Login", '/login',class: "btn", method: :get%>
+		<%= button_to "Cadastrar-se", '/users/new', method: :get%>
+	<% end %>
+<% end %>
