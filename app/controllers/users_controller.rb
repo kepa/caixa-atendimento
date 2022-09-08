@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
-  skip_before_action :authorized, only: [:new, :create]
+  skip_before_action :authorized, only: %i[new create]
 
   def new
     @user = User.new
@@ -14,12 +16,11 @@ class UsersController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-
   end
 end
 
 private
 
 def user_params
-  params.require(:user).permit(:username,:password)
+  params.require(:user).permit(:username, :password)
 end

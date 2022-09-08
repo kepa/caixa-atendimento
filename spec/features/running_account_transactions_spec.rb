@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Running all major transactions', type: :feature do
   sample_user = User.create(username: 'test', password: 'test')
 
-  scenario 'create an account and deposit money' do
+  it 'create an account and deposit money' do
     visit login_path
     fill_in 'Username', with: 'test'
     fill_in 'Password', with: 'test'
@@ -16,7 +18,7 @@ RSpec.describe 'Running all major transactions', type: :feature do
     expect(page).to have_content('deposit')
   end
 
-  scenario 'create an account, deposit and withdraw money' do
+  it 'create an account, deposit and withdraw money' do
     visit login_path
     fill_in 'Username', with: 'test'
     fill_in 'Password', with: 'test'
@@ -33,7 +35,7 @@ RSpec.describe 'Running all major transactions', type: :feature do
     expect(page).to have_content('withdraw')
   end
 
-  scenario 'create an account, deposit and transfer money' do
+  it 'create an account, deposit and transfer money' do
     visit login_path
     fill_in 'Username', with: 'test'
     fill_in 'Password', with: 'test'
@@ -51,5 +53,4 @@ RSpec.describe 'Running all major transactions', type: :feature do
     expect(page).to have_content('transfer')
     expect(page).to have_content('fee')
   end
-
 end

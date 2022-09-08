@@ -1,19 +1,17 @@
-class AccountsController < ApplicationController
-  before_action :set_account, only: %i[ show edit update destroy ]
+# frozen_string_literal: true
 
-  def show
-  end
+class AccountsController < ApplicationController
+  before_action :set_account, only: %i[show edit update destroy]
+
+  def show; end
 
   def create
     @account = current_user.accounts.new
 
-    if @account.save
-      redirect_to account_url(@account)
-    end
+    redirect_to account_url(@account) if @account.save
   end
 
   def update
-
     @account.update(account_params)
 
     if @account.save
@@ -31,22 +29,18 @@ class AccountsController < ApplicationController
     else
       render :show, status: :unprocessable_entity
     end
-
   end
 
   private
 
   def set_account
     @account = current_user.accounts.find(params[:id])
-
-    rescue ActiveRecord::RecordNotFound
-      flash[:notice] = "Acesso negado"
-      redirect_to root_path
-
+  rescue ActiveRecord::RecordNotFound
+    flash[:notice] = 'Acesso negado'
+    redirect_to root_path
   end
 
   def account_params
-    params.require(:account).permit(:withdraw_value,:deposit_value,:transfer_value,:dest_account)
+    params.require(:account).permit(:withdraw_value, :deposit_value, :transfer_value, :dest_account)
   end
-
 end

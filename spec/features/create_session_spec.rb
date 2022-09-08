@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Logging-in an user', type: :feature do
   User.create(username: 'test', password: 'test')
 
-  scenario 'valid login' do
+  it 'valid login' do
     visit login_path
     fill_in 'Username', with: 'test'
     fill_in 'Password', with: 'test'

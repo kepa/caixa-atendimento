@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Creating an user', type: :feature do
-  scenario 'valid creation' do
+  it 'valid creation' do
     visit root_path
     click_on 'Cadastrar-se'
     fill_in 'Username', with: 'test'

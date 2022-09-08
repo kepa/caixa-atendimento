@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  resources :users, only: [:new, :create]
+  resources :users, only: %i[new create]
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
@@ -11,7 +13,7 @@ Rails.application.routes.draw do
   get 'static/withdraw'
   get 'static/transfer'
 
-  resources :accounts, only: [:show, :create, :update, :destroy]
+  resources :accounts, only: %i[show create update destroy]
 
-  root "static#home"
+  root 'static#home'
 end
