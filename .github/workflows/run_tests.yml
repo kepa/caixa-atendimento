@@ -50,6 +50,7 @@ jobs:
           RAILS_ENV: test
           PGHOST: localhost
           PGUSER: rails
+          RAILS_DATABASE_PASSWORD: ""
         run: |
           bin/rails db:setup
 
