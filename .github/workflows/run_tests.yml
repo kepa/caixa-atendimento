@@ -1,0 +1,57 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Verify
+on: [push]
+
+jobs:
+  linters:
+    name: Linters
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Ruby and install gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          
+      - name: Run linters
+        run: |
+          bin/rubocop --parallel
+          
+      - name: Run security checks
+        run: |
+          bin/bundler-audit --update
+
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:12.7
+        env:
+          POSTGRES_USER: rails
+          POSTGRES_DB: caixa_atendimento_test
+          POSTGRES_PASSWORD: ""
+        ports: ["5432:5432"]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Ruby and install gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Setup test database
+        env:
+          RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: rails
+        run: |
+          bin/rails db:setup
+
+      - name: Run tests
+        run: bin/rspec
