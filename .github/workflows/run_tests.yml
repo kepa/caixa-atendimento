@@ -31,10 +31,12 @@ jobs:
       postgres:
         image: postgres:12.7
         env:
-          POSTGRES_USER: rails
-          POSTGRES_DB: caixa_atendimento_test
-          POSTGRES_PASSWORD: ""
-        ports: ["5432:5432"]
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: ci_db_test
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
       - name: Checkout code
@@ -48,11 +50,14 @@ jobs:
       - name: Setup test database
         env:
           RAILS_ENV: test
-          PGHOST: localhost
-          # PGUSER: rails
-          RAILS_DATABASE_PASSWORD: ""
+          POSTGRES_HOST: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: ci_db_test
+          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
         run: |
-          bin/rails db:setup
+          cp config/database.yml.ci config/database.yml
+          bundle exec rails db:create
 
       - name: Run tests
         run: bin/rspec
