@@ -52,7 +52,7 @@ jobs:
 
   deploy:
       name: Deploy
-      if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+      if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
       needs: Tests
       runs-on: ubuntu-latest
 
